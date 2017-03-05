@@ -1,0 +1,15 @@
+    ul.topnav{
+        display: none;   
+    }
+
+    header{
+        display: none;
+    }
+
+    footer{
+        display: none;
+    }
+    
+    a{
+        display: none;
+    }

@@ -1,0 +1,5 @@
+AuthName "Restricted Area" 
+AuthType Basic 
+AuthUserFile /var/www/WebDiP/2015_projekti/WebDiP2015x038/.htpasswd
+Require valid-user
+DirectoryIndex korisnici.php

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+Početak projekta iz kolegija Web dizajn i programiranje.
+Datum:1.6.2016.
+-->
+<html>
+    <head>
+        <title>E-Režije</title>
+        <meta name="author" content="Helena Kišiček">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./css/hkisicek1.css">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header id="header">
+            <p>E-Režije</p>
+            <a class="strana" href="index.php" style="">Povratak na početnu</a>
+        </header>
+
+        <div id="omotac">
+            <ul class="topnav">
+                <?php echo kreirajIzbornik($tip); ?>
+            </ul>
+
+
+            <section id="sadrzaj">
+                <section>
+                    <h2>Projektni zadatak</h2>
+                    <h3>Projekt E - Režije</h3> 
+                    <p>Riječ je o sustavu koji omogućuje korisnicima pregled nad računima svojih režija. 
+                        Sadrži veći broj uloga. Neregistrirani korisnik vidi popis ustanova te odabirom pojedine ustanove vidi tri kategorija očitavanja koje su posljednje obavljene.
+                        Registrirani korisnik je korisnik koji ima pristup u sustav temeljem svog korisničkog imena i lozinke. 
+                        On ima mogućnost rezervacije očitavanja potrošnje te pritom bira ustanovu. Može pregledavati ispostavljene račune za prethodne rezervacije očitavanja.
+                        U mogućnosti je odabrati opciju sviđa mi se/ ne sviđa mi se za pojedinu ustanovu/kategoriju. 
+                        Također, ukoliko nije zadovoljan izdanim računom, podnosi žalbu te i postavlja sliku stvarnog stanja. Sljedeća je uloga moderator. 
+                        On kreira kategorije očitavanja za ustanove za koje je dodijeljen kao moderator. Može potvrditi/odbiti rezervaciju očitavanja. 
+                        Po obavljenom očitavanju kreira račun sa nužnim podacima. Reagira na žalbu odbijanjem ili kreiranjem novog računa. 
+                        Ima uvid u aplikativnu statistiku opcija sviđa mi se/ne sviđa mi se. Jedina preostala uloga jest administrator sa najvećim ovlastima. 
+                        Amin kreira ustanove, dodjeljuje im adrese, ima uvid u statistiku posjećenosti pojedinih stranica te mogućnosti svih ostalih uloga.</p>
+                </section>
+                <section>
+                    <h2>Opis projektnog rješenja</h2>
+                    <p>
+                        Sustav koji služi rezervaciji očitavanja, evidentiranju očitanih stanja te izdavanju računa. 
+                        U samom su sustavu omogućena četiri pogleda korisnika; neregistrirani, registrirani, moderator i administrator. 
+                        Rješenje projektnog zadatka većim dijelom prati sam projektni zadatak pa tako neregistrirani korisnik vidi popis ustanova koje su u tom trenutnku u bazi 
+                        te odabirom pojedine se prikazuju posljednje tri kategorije očitavanja obavljene za tu ustanovu.
+                        Da bi postao registrirani korisnik omogućuje mu se registracija koja mu nakon aktivacije dozvoljava pristup drugim modulima poput rezervacije očitavanja, pregleda računa, podnošenja žalbi.
+                        Moderator nasljeđuje sve opcije registriranog korisnika te mu se dodaje mogućnost dodavanja kategorija, potvrda/odbijanje rezervacija očitavanja,
+                        kreiranje računa, pregled i akcija na žalbe te pregled aplikativne statistike. 
+                        Što se tiče samog administratora, on kreira ustanove i dodjeljuje moderatore. 
+                        Uz to, definira adrese, može preko csv datoteka popunjavati ustanove i adrese. Ima uvid u statistiku sustava i njegov dnevnik. 
+                    </p>
+                </section>
+                <section>
+                    <h2>Navigacijski dijagram</h2>
+                    <a href="img/navigacijski.png">
+                        <img class="dijagram" src="img/navigacijski.png" alt="navigacijski" width="200" height="200">
+                    </a>
+                    <p>Sa navigacijskog dijagrama vidljive su dosad spomenute uloge i njihove ovlasti. Aministrator sa najvećim ovlastima zapravo upravlja
+                        čitavim sustavom. Moderator ima mogućnosti pregleda i dodavanja nekih novih elemenata kao i registrirani korisnik. Neregistrirani ima najmanje ovlasti,
+                        samo pregled ustanova i kategorija. Prijava i registracija su izdvojene s obzirom da im svi mogu pristupiti.</p>
+                </section>
+                <section>
+                    <h2>Shema baze podataka</h2>
+                    <a href="img/ERA.png">
+                        <img class="dijagram" src="img/ERA.png" alt="era" width="200" height="200">
+                    </a>
+                    <p></p>
+                </section>
+                <section>
+                    <h2>Popis i opis skripata</h2>
+                    <ul>
+                        <li>
+                            css
+                            <ul>
+                                <li>hkisicek1.css - glavni css koji sadrži sva pravila</li>
+                                <li>print.css - sadrži pravila za priint verziju</li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <hr>
+                    <ul>
+                        <li>js
+                            <ul>
+                                <li>gradovi.json - json file sa gradovima</li>
+                                <li>izbornik.js - za kreiranje menija kod smanjenog ekrana</li>
+                                <li>provjera.js - skripta za validaciju pri registraciji</li>
+                                <li>sort.js - skripta za datatables</li>
+                            </ul>   
+                        </li>
+                    </ul>
+                    <hr>
+                    <ul>
+                        <li>okviri
+                            <ul>
+                                <li>baza_class.php - klasa za komunikaciju sa bazom</li>
+                                <li>izbornik.php - skripta za ispis izbornika</li>
+                                <li>postavi_vrijeme.php - skripta za postavljanje vremena</li>
+                            </ul>   
+                        </li>
+                    </ul>
+                    <hr>
+                    <ul>
+                        <li>.htaccess - skripta za autorizaciju pristupa mapi</li>
+                        <li>korisnici.php - skripta za ispis korisnika</li>
+                    </ul>
+                    <hr>
+                    <ul>
+                        <li>.htpasswd - datoteka koja sadrži korisničko ime i kriptiranu lozinku za .htaccess</li>
+                        <li>akcija_korisnik.php - skripta koja omogućava blokiranje ili otključavanje korisnika od strane administratora</li>
+                        <li>akcija_rezervacija.php - skripta koja omogućava prihvaćanje ili odbijanje rezervacija</li>
+                        <li>akcija_zalba.php - skripta koja omogućava prihvaćanje ili odbijanje žalbi</li>
+                        <li>aktivacija.php - skripta za aktiviranje korisničkog računa</li>
+                        <li>azuriraj_adresa.php - skripta za ažuriranje adresa od strane admina</li>
+                        <li>azuriraj_kategorija.php - skripta za ažuriranje kategorija od strane admina</li>
+                        <li>azuriraj_ustanova.php - skripta za ažuriranje ustanova od strane admina</li>
+                        <li>dnevnik.php - skripta za prikaz podataka iz tablice dnevnik</li>
+                        <li>dokumentacija.html - dokumentacija</li>
+                        <li>galerija.php - skripta koja prikazuje slike iz uploada u obliku galerije</li>
+                        <li>index.php - početna stranica</li>
+                        <li>izmjena.php - skripta za izmjenu vremena</li>
+                        <li>kornisnicko.php - skripta za provjeru postojanosti korisničkog imena</li>
+                        <li>lajkovi.php - skripta za opcionalnost sviđa mi se/ne sviđa mi se</li>
+                        <li>nova_adresa.php - skripta za kreiranje novih adresa</li>
+                        <li>nova_kategorija.php - skripta za kreiranje novih kategorija</li>
+                        <li>nova_rezervacija.php - skripta za kreiranje novih rezervacija</li>
+                        <li>nova_ustanova.php - skripta za kreiranje novih ustanova</li>
+                        <li>nova_zalba.php - skripta za kreiranje novih žalbi</li>
+                        <li>novi_racun.php - skripta za kreiranje novog računa</li>
+                        <li>o_autoru.html - stranica o autoru</li>
+                        <li>ocitano_stanje.php - skripta za unos novog očitanja</li>
+                        <li>odjava.php - skripta za odjavu sa sustava</li>
+                        <li>pdf.php - skripta za kreiranje pdf dokumenata</li>
+                        <li>popis_kategorija.php - skripta za pregled kategorija</li>
+                        <li>popis_ustanova.php - skripta za pregled ustanova</li>
+                        <li>popis_zalbi.php - skripta za pregled žalbi</li>
+                        <li>pregled_adresa.php - skripta za pregled adresa</li>
+                        <li>pregled_korisnika.php - skripta za pregled korisnika</li>
+                        <li>pregled_ocitanja.php - skripta za pregled očitanja</li>
+                        <li>pregled_racuna.php - skripta za pregled racuna</li>
+                        <li>pregled_rezervacija.php - skripta za pregled rezervacija</li>
+                        <li>prijava.php - skripta za prijavu na sustav</li>
+                        <li>promijeni_vrijeme.php - skripta za promjenu vremena</li>
+                        <li>registracija.php - skripta za registraciju</li>
+                        <li>statistikA.php - skripta za statistiku upita</li>
+                        <li>statistikaK.php - skripta za statistiku po kategorijama</li>
+                        <li>statistikaS.php - skripta za statistiku po skriptama</li>
+                        <li>statistikaU.php - skripta za statistiku po ustanovama</li>
+                        <li>upload_csvA.php - skripta za upload csv datoteke za adrese</li>
+                        <li>upload_csvU.php - skripta za upload csv datoteke za ustanove</li>
+                        <li>zabrana.php - skripta za neovlašteni pristup</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Mapa mjesta</h2>
+                    <ul>
+                        Neregistrirani
+                        <li>Početna</li>
+                        <li>Popis ustanova</a></li>
+                        <li>Prijava</li>
+                        <li>Registracija</li>
+                        <li>Dokumentacija</li>
+                        <li>O autoru</li><br/>
+
+                        Registrirani
+                        <li>Početna</a></li>
+                        <li>ova rezervacija</a></li>
+                        <li>Pregled računa</li>
+                        <li>Nova žalba</li>
+                        <li>Popis ustanova</li><br/>
+
+                        Moderator
+                       <li>Početna</li>
+                        <li>Nova kategorija</li>
+                        <li>Pregled rezervacija</li>
+                        <li>Pregled očitanja</li>
+                        <li>Popis žalbi</li>
+                        <li>Popis ustanova</li>
+                        <li>Galerija</li>
+                        <li>Statistika</li><br/>
+                        
+                        Aministrator
+                        <li>Početna</li>
+                        <li>Nova ustanova</li>
+                        <li>Nova adresa</li>
+                        <li>Popis ustanova</li>
+                        <li>Pregled adresa</li>
+                        <li>Pregled očitanja</li>
+                        <li>Pregled rezervacija</li>
+                        <li>Pregled računa</li>
+                        <li>Popis žalbi</li>
+                        <li>Pregled korisnika</li>
+                        <li>Statistika</li>
+                        <li>Promijeni vrijeme</li>
+                        <li>Dnevnik</li><br/>
+
+                    </ul>
+                </section>
+                <section>
+                    <h2>Opis korištenih tehnologija</h2>
+                    <p>Za izradu projektnog rješenja korišteno je razvojno okruženje NetBeans sa integriranim HTML5 i PHP aplikacijama. 
+                        Korišteni programski jezici su: Javascript, PHP, HTML5 te CSS. CSS, HTML i PHP nisu pisani u nikakvim razvojnim okruženjima. 
+                        Javascript koristi jQuery u nekim dijelovima. Server sustava je Apache Server na kojem se nalazi MySql baza podataka. 
+                        Korišten je alat phpmyadmin za pristup bazi podataka te MySQL workbench za dizajniranje baze. Uz to, korišten je jQuery datatables. </p>
+                </section>
+                <section>
+                    <h2>Opis vanjskih izvora</h2>
+                    <p>
+                        Za generiranje pdf dokumenata korištena je klasa preuzeta sa stranice http://www.fpdf.org/. Navedena klasa smještena je u direktorij "vanjske".
+                        Za prikaz straničenja i sortiranja korišten je dodatak jquery datatables.
+                    </p>
+                </section>
+                <section>
+                    <h2>Opis završenosti projekta</h2>
+                    <p>Veći dio funkcionalnosti projekta je ostvaren. Galerija slika je napravljena, ali ne i mogućnost tagiranja te pretraživanja po spomenutim tagovima. 
+                        Za tablice je korišten dodatak datatables. Statistike ne omogućuju filtriranje po određenim segmentima.
+                        Prema obrascu za ocjenjivanje veći je broj segmenata koji nisu realizirani, 
+                        među njima, segmenti posebnih osobina, konfiguracija straničenja i trajanja sesija, adminov CRUD te korisničko sučelje nije ostvareno AJAX-om.</p>
+                </section>
+
+            </section>
+        </div>
+        <footer id="footer">
+            <address>
+                Kontaktirajte me na: <br>
+                <a class="strana" href="mailto:hkisicek@foi.hr">Helena Kišiček</a>
+            </address>
+            <p><small>&copy; Sva prava pridržana, Web dizajn i programiranje, 2016</small></p>
+
+        </footer>
+    </body>
+</html>
