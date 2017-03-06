@@ -2,10 +2,10 @@
 
 class Baza {
 
-    const server = "mysql.hostinger.hr";
-    const baza = "u679416855_123";
-    const korisnik = "u679416855_123";
-    const lozinka = "123321";
+    const server = "";
+    const baza = "";
+    const korisnik = "";
+    const lozinka = "";
 
     function spojiDB() {
         $mysqli = new mysqli(self::server, self::korisnik, self::lozinka, self::baza);
